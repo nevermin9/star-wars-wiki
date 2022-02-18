@@ -8,6 +8,21 @@
     <router-view />
 </template>
 
+<script lang="ts">
+import { defineComponent, onMounted } from "vue";
+const test = process.env.BASE_URL;
+
+export default defineComponent({
+    setup() {
+        onMounted(() => {
+            console.log(test);
+            console.log(process.env.VUE_APP_API_URL);
+        });
+    },
+})
+</script>
+
+
 <style lang="scss">
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;

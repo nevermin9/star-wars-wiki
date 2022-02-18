@@ -1,0 +1,1 @@
+export { getNumberFromString } from "./getNumberFromString";

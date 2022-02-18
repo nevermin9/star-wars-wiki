@@ -1,12 +1,8 @@
 import { createStore } from "vuex"
+import peopleModule from "@/store/people";
 
 export default createStore({
-    state: {
-    },
-    mutations: {
-    },
-    actions: {
-    },
     modules: {
-    }
-})
+        peopleModule,
+    },
+});

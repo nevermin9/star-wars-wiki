@@ -1,15 +1,41 @@
 <template>
-    <div id="nav">
-        <router-link to="/">Home</router-link> |
+    <DataLoadContainer
+        action-names="people/LOAD_PEOPLE_BY_PAGE"
+        :payloads="{ page: 1 }"
+    >
+        <template #default>
+            {{ peopleDict }}
+        </template>
 
-        <router-link to="/about">About</router-link>
-    </div>
+        <template #loader>
+            Loading....
+        </template>
 
-    <router-view />
+        <template #error>
+            error...
+        </template>
+    </DataLoadContainer>
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
+import DataLoadContainer from "@/components/DataLoadContainer/index.vue";
+import { usePeopleStore } from "@/composition/People";
 
+export default defineComponent({
+    components: {
+        DataLoadContainer,
+    },
+
+    setup() {
+        const { peopleDict } = usePeopleStore();
+
+        return {
+            peopleDict,
+        };
+    }
+
+});
 </script>
 
 <style lang="scss">

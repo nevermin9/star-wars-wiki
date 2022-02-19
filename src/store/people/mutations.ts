@@ -14,6 +14,19 @@ const mutations = {
         }
 
         state.peopleDictionary = { ...state.peopleDictionary, ...buffer };
+    },
+
+    SET_TOTAL_PEOPLE(state: any, { count }: any) {
+        state.totalPeople = count;
+    },
+
+    SET_TOTAL_PAGES(state: any, { count, currentPageCount }: any) {
+        const totalPages = Math.ceil(count / currentPageCount);
+        state.totalPages = totalPages;
+    },
+
+    SET_CURRENT_PAGE(state: any, { page }: any) {
+        state.currentPage = page;
     }
 };
 

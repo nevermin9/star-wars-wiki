@@ -6,7 +6,7 @@ export async function makeRequest(actionsNames: ActionName | ActionName[], paylo
 
     if (Array.isArray(actionsNames)) {
         const promiseList = actionsNames.map((actionName) => {
-            store.dispatch(actionName, payloads[actionName]);
+            store.dispatch(actionName, payloads[actionName as keyof IPayloads]);
         });
 
         return await Promise.all(promiseList);

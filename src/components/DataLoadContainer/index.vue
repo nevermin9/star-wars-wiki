@@ -1,11 +1,15 @@
 <template>
     <section>
-        <div v-if="!isLoading">
+        <div v-if="!isLoading && !isError">
             <slot />
         </div>
 
         <div v-else-if="isLoading">
-            <slot name="fallback" />
+            <slot name="loader" />
+        </div>
+
+        <div v-else-if="!isLoading && isError">
+            <slot name="error" />
         </div>
     </section>
 </template>

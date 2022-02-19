@@ -1,0 +1,1 @@
+export { usePeopleStore } from "./usePeopleStore";

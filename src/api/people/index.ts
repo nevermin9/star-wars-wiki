@@ -1,7 +1,7 @@
 import { httpService } from "@/services/HttpService";
 
-const getPeopleByPage = async ({ page }) => {
-
+const getPeopleByPage = async ({ page }: any) => {
+    return null;
 };
 
 

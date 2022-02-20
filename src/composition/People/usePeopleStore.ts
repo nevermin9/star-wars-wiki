@@ -1,7 +1,7 @@
-import { computed } from "vue";
+import { computed, Ref } from "vue";
 import { useStore } from "vuex";
 
-export function usePeopleStore() {
+export function usePeopleStore(): { [key:string]: Ref<unknown> } {
     const store = useStore();
 
     const peopleDict = computed(() => {

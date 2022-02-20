@@ -1,19 +1,39 @@
 <template>
-    <section>
-        this is people page
-        <router-link :to="{ name: 'Hero', params: { id: 1 } }"> to hero page </router-link>
-    </section>
+    <DataLoadingContainer
+        class="people-page"
+        :action-names="actionName"
+        :payloads="actionPayload"
+    >
+        <template #default>
+            <section>
+                this is people page
+                <router-link :to="{ name: 'Hero', params: { id: 1 } }"> to hero page </router-link>
+                {{ 
+                    peopleDict
+                }}
+            </section>
+        </template>
+
+        <template #loader>
+            Loading....
+        </template>
+
+        <template #error>
+            Ooops!
+        </template>
+    </DataLoadingContainer>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-// import { RouterLink } from "vue-router";
+import { defineComponent, reactive, toRefs } from "vue";
+import DataLoadingContainer from "@/components/DataLoadContainer/index.vue";
+import { usePeopleStore } from "@/composition/People";
 
 export default defineComponent({
     name: "PeoplePage",
 
     components: {
-
+        DataLoadingContainer,
     },
 
     props: {
@@ -21,7 +41,19 @@ export default defineComponent({
             type: String,
             required: true,
         },
-    }
+    },
 
+    setup(props) {
+        const { page } = toRefs(props);
+        const { peopleDict } = usePeopleStore();
+        const actionName = "people/LOAD_PEOPLE_BY_PAGE";
+        const actionPayload = reactive({ page })
+
+        return {
+            actionName,
+            actionPayload,
+            peopleDict,
+        }
+    }
 })
 </script>

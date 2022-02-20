@@ -1,11 +1,11 @@
 <template>
     <section>
-        <div v-if="!isLoading && !isError">
-            <slot />
+        <div v-if="isLoading && !isError">
+            <slot name="loader" />
         </div>
 
-        <div v-else-if="isLoading">
-            <slot name="loader" />
+        <div v-else-if="!isLoading && !isError">
+            <slot />
         </div>
 
         <div v-else-if="!isLoading && isError">
@@ -49,6 +49,7 @@ export default defineComponent({
 
         return {
             isLoading,
+            isError,
         }
     },
 })

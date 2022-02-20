@@ -1,13 +1,11 @@
 <template>
     <NSpace vertical justify="center">
         <NLayout>
-            <!-- <NLayoutHeader> -->
-                <transition name="fade" appear mode="out-in">
-                    <NLayoutHeader :key="$route.name">
-                        {{ $route.name }}
-                    </NLayoutHeader>
-                </transition>
-            <!-- </NLayoutHeader> -->
+            <transition name="fade" appear mode="out-in">
+                <NLayoutHeader :key="$route.name">
+                    {{ $route.name }}
+                </NLayoutHeader>
+            </transition>
 
             <NLayoutContent>
                 <router-view v-slot="{ Component }">

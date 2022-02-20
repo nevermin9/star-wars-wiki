@@ -10,9 +10,18 @@ import { defineComponent } from "vue";
 // import { RouterLink } from "vue-router";
 
 export default defineComponent({
+    name: "PeoplePage",
+
     components: {
 
     },
+
+    props: {
+        page: {
+            type: String,
+            required: true,
+        },
+    }
 
 })
 </script>

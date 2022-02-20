@@ -1,12 +1,15 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router"
 import routeNames from "./route-names";
-import guards from "./guards"
+import guards from "./guards/global"
+import { keepQuery } from "./guards/PeoplePage";
 
 const routes: Array<RouteRecordRaw> = [
     {
         path: "/",
         name: routeNames.peoplePage,
         component: () => import(/* webpackChunkName: "people" */ "@/pages/People/index.vue"),
+        beforeEnter: [ keepQuery ],
+        props: route => ({ page: route.query.page }),
     },
     {
         path: "/hero/:id",

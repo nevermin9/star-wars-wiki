@@ -1,4 +1,11 @@
-# star_wars_wiki
+# star_wars_wiki. 
+
+
+## Add .env.local before start the project
+
+```
+VUE_APP_API_URL="https://swapi.dev/api"
+```
 
 ## Project setup
 ```

@@ -1,4 +1,6 @@
-const state = {
+import { IPeopleState } from "@/types/People";
+
+const state: IPeopleState = {
     peopleDictionary: null,
     totalPages: 0,
     totalPeople: 0,

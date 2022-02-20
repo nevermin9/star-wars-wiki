@@ -1,3 +1,11 @@
+export interface IPeopleState {
+    peopleDictionary: Record<string, IHero> | null,
+    totalPages: number,
+    totalPeople: number,
+    currentPage: number,
+    currentHero: IHero | null,
+}
+
 export type Gender = "male" | "female" | "n/a";
 export interface IHero {
     name: string,

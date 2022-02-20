@@ -44,6 +44,7 @@ import { defineComponent, PropType, reactive, toRefs } from "vue";
 import { useHeroData } from "@/composition/People"
 import { IHero } from "@/types/People";
 import { NCard } from "naive-ui";
+import { getNumberFromString } from "@/helpers";
 
 export default defineComponent({
     name: "HeroCard",
@@ -64,7 +65,7 @@ export default defineComponent({
     },
 
     setup(props) {
-        const { hero, heroId } = toRefs(props);
+        const { hero } = toRefs(props);
         const {
             heroName,
             heroBirth,
@@ -74,7 +75,7 @@ export default defineComponent({
         const routeToHeroPage = reactive({
             name: routeNames.heroPage,
             params: {
-                id: heroId,
+                id: getNumberFromString(hero.value.url),
             }
         });
 

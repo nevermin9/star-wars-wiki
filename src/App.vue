@@ -1,30 +1,36 @@
 <template>
-    <DataLoadContainer
-        action-names="people/LOAD_PEOPLE_BY_PAGE"
-        :payloads="{ page: 1 }"
-    >
-        <template #default>
-            {{ peopleDict }}
-        </template>
+    <NSpace vertical justify="center">
+        <NLayout>
+            <!-- <NLayoutHeader> -->
+                <transition name="fade" appear mode="out-in">
+                    <NLayoutHeader :key="$route.name">
+                        {{ $route.name }}
+                    </NLayoutHeader>
+                </transition>
+            <!-- </NLayoutHeader> -->
 
-        <template #loader>
-            Loading....
-        </template>
-
-        <template #error>
-            error...
-        </template>
-    </DataLoadContainer>
+            <NLayoutContent>
+                <router-view v-slot="{ Component }">
+                    <transition name="fade" appear mode="out-in">
+                        <component :is="Component" />
+                    </transition>
+                </router-view>
+            </NLayoutContent>
+        </NLayout>
+    </NSpace>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import DataLoadContainer from "@/components/DataLoadContainer/index.vue";
 import { usePeopleStore } from "@/composition/People";
+import { NSpace, NLayout, NLayoutHeader, NLayoutContent } from "naive-ui";
 
 export default defineComponent({
     components: {
-        DataLoadContainer,
+        NSpace,
+        NLayout,
+        NLayoutHeader,
+        NLayoutContent,
     },
 
     setup() {
@@ -39,24 +45,20 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-#app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
 }
 
-#nav {
-    padding: 30px;
-
-    a {
-        font-weight: bold;
-        color: #2c3e50;
-
-        &.router-link-exact-active {
-            color: #42b983;
-        }
-    }
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
 }
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
 </style>
